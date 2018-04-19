@@ -47,7 +47,7 @@ class RunnerConfig(object):
 
         try:
             with open(os.path.join(self.private_data_dir, "env", "envvars"), 'r') as f:
-                self.env = yaml.load(f.read())
+                self.env = {k: str(v) for k, v in yaml.load(f.read()).items()}
         except Exception:
             print("Not loading environment vars")
             self.env = dict()
